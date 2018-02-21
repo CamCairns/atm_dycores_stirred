@@ -1,0 +1,18 @@
+ &fms_io_nml
+    threading_write = 'single',
+    fileset_write = 'single' /
+
+ &fms_nml
+        domains_stack_size = 900000 /
+
+ &fv_core_nml
+     nlon =144, mlat=90, nlev = 24, ncnst = 1, pnats = 0,
+     layout = 1,1, 
+     n_split=0,              
+     adiabatic  = .false.,
+     n_spong = 1,
+     use_set_eta = .true.,
+     print_freq = 24,
+     consv_te = 0.7, 
+     restart_format='NETCDF' /
+

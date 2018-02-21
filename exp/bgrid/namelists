@@ -1,0 +1,62 @@
+#
+# namelists used for bgrid core (N45)
+#
+
+# only used if initial conditions file not specified in run
+# used for cold start of bgrid core (N45L20)
+ &bgrid_cold_start_nml
+     nlon = 144, nlat = 90, nlev = 20,
+     equal_vert_spacing = .true. /
+
+ &bgrid_core_driver_nml
+     layout = 0,0,
+     filter_option = 2,
+     num_adjust_dt = 3,
+     num_advec_dt  = 3,
+     pgf_scheme = 'finite_volume',
+     restart_output_format = 'netcdf',
+     do_conserve_energy = .true. /
+
+# Important Note:
+#    The time steps used in the dynamical core are controlled by:
+#      a) atmospheric time step in the main program namelist (dt_atmos)
+#      b) advection time step  = dt_atmos / num_advec_dt
+#      c) adjustment time step = dt_atmos / (num_advec_dt * num_adjust_dt)
+
+ &bgrid_horiz_diff_nml
+     damp_coeff_wind   = 0.350,
+     damp_coeff_temp   = 0.350,
+     damp_coeff_tracer = 0.350,
+     slope_corr_temp   = 0.95, 0.95, 0.75, 0.10,
+     slope_corr_tracer = 0.95, 0.95, 0.75, 0.10,
+     damp_scheme_wind  = 2,
+     damp_scheme_temp  = 4,
+     reflat = 80. /
+
+ &bgrid_advection_nml
+     horiz_advec_scheme_wind   = 'fourth_centered',
+      vert_advec_scheme_wind   = 'fourth_centered',
+     horiz_advec_scheme_temp   = 'second_centered',
+      vert_advec_scheme_temp   = 'second_centered',
+     horiz_advec_scheme_tracer = 'second_centered',
+      vert_advec_scheme_tracer = 'finite_volume_parabolic',
+     num_fill_pass = 1  /
+
+ &bgrid_sponge_nml
+     num_sponge_levels = 0,
+     sponge_coeff_wind = 0.00  /
+
+ &bgrid_integrals_nml
+     file_name  = 'dynam_integral.out',
+     time_units = 'days',
+     output_interval = 1.00   /
+
+# NOTE: domains_stack_size will vary for different model resolutions,
+#       domain decompositions, and number of processors used.
+#       The actual value used is printed when the model terminates.
+ &fms_nml
+     domains_stack_size = 600000  /
+
+ &fms_io_nml
+    threading_write = 'single',
+    fileset_write = 'single' /

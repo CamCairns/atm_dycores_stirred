@@ -1,0 +1,112 @@
+#!/bin/csh -f
+#Minimal runscript for atmospheric dynamical cores
+set echo 
+#--------------------------------------------------------------------------------------------------------
+# define variables
+set platform  = ia64                                   # A unique identifier for your platform
+set npes      = 8                                        # number of processors
+set in          = $1
+set modeldir = /home/cwc210/FMS_models/atm_dycores_stirred/
+set template  = $modeldir/mkmf.template.$platform   # path to template for your platform
+set mkmf      = $modeldir/bin/mkmf                      # path to executable mkmf
+set sourcedir = $modeldir/src                           # path to directory containing model source code
+set mppnccombine = $modeldir/bin/mppnccombine.$platform # path to executable mppnccombine
+#--------------------------------------------------------------------------------------------------------
+set exp_name   = control_test
+set execdir   = $modeldir/exp/spectral/$expname/exec.$platform       # where code is compiled and executable is created
+set workdir   = /data/cwc210/working/barotropic_stirred/spectral/$exp_name
+set arc       = /data/cwc210/archive/barotropic_stirred/spectral/$exp_name
+ 
+set pathnames = $modeldir/exp/spectral/$expname/path_names           # path to file containing list of source paths
+set namelist  = $modeldir/exp/spectral/$expname/namelists            # path to namelist file
+set diagtable = $modeldir/exp/spectral/$expname/diag_table           # path to diagnositics table
+set fieldtable = $modeldir/exp/spectral/$expname/field_table         # path to field table (specifies tracers)
+#--------------------------------------------------------------------------------------------------------
+# compile mppnccombine.c, will be used only if $npes > 1
+if ( ! -f $mppnccombine ) then
+  #gcc -O -o $mppnccombine -I/usr/local/include -L/usr/local/lib $cwd/../../../postprocessing/mppnccombine.c -lnetcdf
+  #icc -O -o $mppnccombine -I/share/apps/netcdf/intel/4.1.1/include -L/share/apps/netcdf/intel/4.1.1/lib $cwd/../../../postprocessing/mppnccombine.c -lnetcdf
+  gcc -O -o $mppnccombine -I/sw/netcdf-4.3.0/include -L/sw/netcdf-4.3.0/lib $cwd/../../postprocessing/mppnccombine.c -lnetcdf
+endif
+#--------------------------------------------------------------------------------------------------------
+
+# setup directory structure
+if ( ! -d $execdir ) then 
+mkdir $execdir
+endif
+
+rm -rf $workdir
+mkdir -p $workdir $workdir/INPUT $workdir/RESTART
+if ( ! -d $arc ) then 
+mkdir -p $arc
+endif
+
+#--------------------------------------------------------------------------------------------------------
+# compile the model code and create executable
+cd $execdir
+$mkmf -p fms.x -t $template -c "-Duse_libMPI -Duse_netCDF" -a $sourcedir $pathnames /usr/local/include $sourcedir/shared/mpp/include $sourcedir/shared/include
+make -f Makefile
+cd $workdir
+#--------------------------------------------------------------------------------------------------------
+# set run length and time step, get input data and executable
+cat > input.nml <<EOF
+ &main_nml
+     days   = 1,
+     dt_atmos = 1800 /
+EOF
+cat $namelist >> input.nml
+cp $diagtable diag_table
+cp $fieldtable field_table
+cp $execdir/fms.x fms.x
+
+set out = $in
+@ out ++
+
+if ($in > 0) then
+    cd INPUT
+    cp $arc/restarts/res_$in.cpio res
+    cpio -iv < res
+endif
+
+#if ($in > 1) then
+#    cd INPUT
+#    cp /srv/ccrc/data01/z3309205/atm_dycores/spectral/control_monthly/restarts/res_$in.cpio res
+#    cp $arc/restarts/res_$in.cpio res
+#    cpio -iv < res
+#endif
+
+cd $workdir
+#--------------------------------------------------------------------------------------------------------
+# run the model with mpirun
+mpirun -np $npes fms.x
+#--------------------------------------------------------------------------------------------------------
+# combine netcdf files
+
+if ( $npes > 1 ) then
+  foreach ncfile (`/bin/ls *.nc.0000`)
+    $mppnccombine $ncfile:r
+    if ($status == 0) rm -f $ncfile:r.????
+  end
+endif
+
+if ( ! -d $arc/run$out ) then
+mkdir $arc/run$out
+endif
+cp ./*.nc ./*table *.nml $arc/run$out/
+
+ncwa -a lon $arc/run$out/atmos_daily.nc $arc/run$out/daily_av.nc  
+ncwa -a lon_every $arc/run$out/atmos_dailya.nc $arc/run$out/dailya_av.nc  
+
+
+if ( ! -d $arc/restarts ) then
+mkdir $arc/restarts
+endif
+
+cd RESTART
+/bin/ls *.res *.res.nc | cpio -ov > res_$out.cpio
+cp res_$out.cpio $arc/restarts/
+
+
+
+
+

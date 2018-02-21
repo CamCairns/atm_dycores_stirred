@@ -1,0 +1,15 @@
+# test tracers for B-grid core (with Held-Suarez forcing)
+
+ "TRACER", "atmos_mod",    "tracer1" 
+           "longname",     "tracer advected using 2nd-order"
+           "units",        "none" 
+           "advec_horiz",  "second_centered"
+           "advec_vert",   "second_centered"   /
+
+ "TRACER", "atmos_mod",    "tracer2" 
+           "longname",     "tracer advected using 4th-order and ppm"
+           "units",        "none" 
+           "advec_horiz",  "fourth_centered"
+           "advec_vert",   "finite_volume_parabolic"   /
+
+

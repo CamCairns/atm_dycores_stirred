@@ -1,0 +1,129 @@
+"Model results from the Held-Suarez benchmark"
+0 0 0 0 0 0
+#output files
+"atmos_daily",    0, "hours", 1, "seconds", "time",
+"atmos_dailya",   -1, "hours",  1, "seconds", "time",
+"atmos_dailyb",    24, "hours", 1, "days", "time",
+"eddy_forcing_terms",  -1, "hours", 1, "days", "time",
+"atmos_average",  -1, "hours", 1, "days", "time",
+#diagnostic field entries.
+#  "dynamics",    "ps",             "ps",             "atmos_dailyb",    "all", .true., "none", 2,
+# "dynamics",    "div",            "div",            "atmos_daily",    "all", .true., "none", 2,
+# "dynamics",    "vor",            "vor",            "atmos_daily",    "all", .true., "none", 2,
+#  "dynamics",    "pres_full",      "pres_full",      "atmos_dailyb",    "all", .true., "none", 2,
+# "dynamics",    "pres_half",      "pres_half",      "atmos_daily",    "all", .true., "none", 2,
+ "dynamics",    "height",         "height",         "atmos_dailyb",    "all", .true., "none", 2,
+# "dynamics",    "height_half",    "height_half",    "atmos_daily",    "all", .true., "none", 2,
+ "dynamics",    "ucomp",          "ucomp",          "atmos_dailyb",    "all", .true., "none", 2,
+ "dynamics",    "vcomp",          "vcomp",          "atmos_dailyb",    "all", .true., "none", 2,
+ "dynamics",    "omega",          "omega",          "atmos_dailyb",    "all", .true., "none", 2,
+ "dynamics",    "temp",           "temp",           "atmos_dailyb",    "all", .true., "none", 2,
+# #"dynamics",    "bk",             "bk",             "atmos_average",  "all", .true., "none", 2,
+ #"dynamics",    "pk",             "pk",             "atmos_average",  "all", .true., "none", 2,
+# "dynamics",    "zsurf",          "zsurf",          "atmos_average",  "all", .true., "none", 2,
+# "dynamics",    "ps",             "ps",             "atmos_average",  "all", .true.,  "none", 2,
+ "dynamics",    "ucomp",          "ucomp",          "atmos_average",  "all", .true.,  "none", 2,
+ "dynamics",    "vcomp",          "vcomp",          "atmos_average",  "all", .true.,  "none", 2,
+ "dynamics",    "temp",           "temp",           "atmos_average",  "all", .true.,  "none", 2,
+ "dynamics",    "omega",          "omega",          "atmos_average",  "all", .true.,  "none", 2,
+ "dynamics",    "div",            "div",            "atmos_average",  "all", .true.,  "none", 2,
+ "dynamics",    "vor",            "vor",            "atmos_average",  "all", .true.,  "none", 2,
+# "dynamics",    "tracer1",        "tracer1",        "atmos_average",  "all", .true.,  "none", 2,
+# "dynamics",    "tracer2",        "tracer2",        "atmos_average",  "all", .true.,  "none", 2,
+# "hs_forcing",  "teq",            "teq",            "atmos_average",  "all", .true.,  "none", 2,
+ "dynamics_every",        "udt_damp",    "udt_damp",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "udt_rob",    "udt_rob",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "udt_vertdiff",    "udt_vertdiff",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "udt_pgrad",    "udt_pgrad",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "udt_pgrad_eddy_eddy",    "udt_pgrad_eddy_eddy",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "udt_pgrad_eddy_mean",    "udt_pgrad_eddy_mean",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "udt_vertadvec",    "udt_vertadvec",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "udt_vertadvec_eddy_eddy",    "udt_vertadvec_eddy_eddy",    "atmos_dailya", "all", .false., "none", 2,
+  "dynamics_every",        "udt_vertadvec_eddy_mean",    "udt_vertadvec_eddy_mean",    "atmos_dailya", "all", .false., "none", 2,
+# "dynamics_every",        "wtheta",    "wtheta",    "atmos_dailya", "all", .false., "none", 2,
+# "dynamics_every",        "vtheta",    "vtheta",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "eke",    "eke",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "udt_vorflux",    "udt_vorflux",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "udt_vorfluxm",    "udt_vorfluxm",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "udt_vorfluxf",    "udt_vorfluxf",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "udt_sigma",    "udt_sigma",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "udt_int",    "udt_int",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "udt_timestep",    "udt_timestep",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "udt_trunc",    "udt_trunc",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "vdt_damp",    "vdt_damp",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "vdt_rob",    "vdt_rob",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "vdt_vertdiff",    "vdt_vertdiff",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "vdt_pgrad",    "vdt_pgrad",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "vdt_pgrad_eddy_eddy",    "vdt_pgrad_eddy_eddy",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "vdt_pgrad_eddy_mean",    "vdt_pgrad_eddy_mean",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "vdt_vertadvec",    "vdt_vertadvec",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "vdt_vertadvec_eddy_eddy",    "vdt_vertadvec_eddy_eddy",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "vdt_vertadvec_eddy_mean",    "vdt_vertadvec_eddy_mean",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "vdt_vorflux",    "vdt_vorflux",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "vdt_sigma",    "vdt_sigma",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "vdt_int",    "vdt_int",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "vdt_timestep",    "vdt_timestep",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "vdt_trunc",    "vdt_trunc",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "tdt_damp",    "tdt_damp",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "tdt_vertdiff",    "tdt_vertdiff",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "tdt_vertadvec_eddy_eddy",    "tdt_vertadvec_eddy_eddy",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "tdt_vertadvec_eddy_mean",    "tdt_vertadvec_eddy_mean",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "tdt_horizadvec_eddy_eddy",    "tdt_horizadvec_eddy_eddy",    "atmos_dailya", "all", .false., "none", 2,
+ "dynamics_every",        "tdt_horizadvec_eddy_mean",    "tdt_horizadvec_eddy_mean",    "atmos_dailya", "all", .false., "none", 2,
+# "dynamics_every",        "divg_post",    "divg_post",    "atmos_dailya", "all", .false., "none", 2,
+# "dynamics_every",        "vorg_post",    "vorg_post",    "atmos_dailya", "all", .false., "none", 2,
+# "dynamics_every",        "ps_every",    "ps_every",    "atmos_dailya", "all", .false., "none", 2,
+# "dynamics_every",        "t_every",    "t_every",    "atmos_dailya", "all", .false., "none", 2,
+# "dynamics_every",        "u_every",    "u_every",    "atmos_dailya", "all", .false., "none", 2,
+# "dynamics_every",        "v_every",    "v_every",    "atmos_dailya", "all", .false., "none", 2,
+# EDDY FORCING TERMS
+"dynamics_every",        "udt_pgrad_eddy_eddy",        "udt_pgrad_eddy_eddy",        "eddy_forcing_terms", "all", .false., "none", 2,
+"dynamics_every",        "udt_pgrad_eddy_mean",        "udt_pgrad_eddy_mean",        "eddy_forcing_terms", "all", .false., "none", 2,
+"dynamics_every",        "udt_vertadvec_eddy_eddy",    "udt_vertadvec_eddy_eddy",    "eddy_forcing_terms", "all", .false., "none", 2,
+"dynamics_every",        "udt_vertadvec_eddy_mean",    "udt_vertadvec_eddy_mean",    "eddy_forcing_terms", "all", .false., "none", 2,
+"dynamics_every",        "udt_fvorfluxm",              "udt_fvorfluxm",              "eddy_forcing_terms", "all", .false., "none", 2,
+"dynamics_every",        "udt_relvorfluxm",            "udt_relvorfluxm",            "eddy_forcing_terms", "all", .false., "none", 2, 
+"dynamics_every",        "udt_eddyeddyvorflux",        "udt_eddyeddyvorflux",        "eddy_forcing_terms", "all", .false., "none", 2,
+"dynamics_every",        "udt_eddymeanvorflux",        "udt_eddymeanvorflux",        "eddy_forcing_terms", "all", .false., "none", 2,
+"dynamics_every",        "vdt_pgrad_eddy_eddy",        "vdt_pgrad_eddy_eddy",        "eddy_forcing_terms", "all", .false., "none", 2,
+"dynamics_every",        "vdt_pgrad_eddy_mean",        "vdt_pgrad_eddy_mean",        "eddy_forcing_terms", "all", .false., "none", 2,
+"dynamics_every",        "vdt_fvorfluxm",              "vdt_fvorfluxm",              "eddy_forcing_terms", "all", .false., "none", 2,             
+"dynamics_every",        "vdt_relvorfluxm",            "vdt_relvorfluxm",            "eddy_forcing_terms", "all", .false., "none", 2,  
+"dynamics_every",        "vdt_vertadvec_eddy_eddy",    "vdt_vertadvec_eddy_eddy",    "eddy_forcing_terms", "all", .false., "none", 2,
+"dynamics_every",        "vdt_vertadvec_eddy_mean",    "vdt_vertadvec_eddy_mean",    "eddy_forcing_terms", "all", .false., "none", 2,
+"dynamics_every",        "vdt_eddyeddyvorflux",        "vdt_eddyeddyvorflux",        "eddy_forcing_terms", "all", .false., "none", 2,
+"dynamics_every",        "vdt_eddymeanvorflux",        "vdt_eddymeanvorflux",        "eddy_forcing_terms", "all", .false., "none", 2,
+"dynamics_every",        "tdt_vertadvec_eddy_eddy",    "tdt_vertadvec_eddy_eddy",    "eddy_forcing_terms", "all", .false., "none", 2,
+"dynamics_every",        "tdt_vertadvec_eddy_mean",    "tdt_vertadvec_eddy_mean",    "eddy_forcing_terms", "all", .false., "none", 2,
+"dynamics_every",        "tdt_horizadvec_eddy_eddy",   "tdt_horizadvec_eddy_eddy",   "eddy_forcing_terms", "all", .false., "none", 2,
+"dynamics_every",        "tdt_horizadvec_eddy_mean",   "tdt_horizadvec_eddy_mean",   "eddy_forcing_terms", "all", .false., "none", 2,
+#=============================================================================================
+#
+#  FORMATS FOR FILE ENTRIES (not all input values are used)
+#  ------------------------
+#
+#"file_name", output_freq, "output_units", format, "time_units", "long_name"
+#
+#
+#   output_freq:  > 0  output frequency in "output_units"
+#                 = 0  output frequency every time step
+#                 =-1  output frequency at end of run
+#
+#   output_units = units used for output frequency
+#                  (years, months, days, minutes, hours, seconds)
+#
+#   time_units   = units used to label the time axis
+#                  (days, minutes, hours, seconds)
+#
+#
+#  FORMAT FOR FIELD ENTRIES (not all input values are used)
+#  ------------------------
+#
+#"module_name", "field_name", "output_name", "file_name", "time_sampling", time_avg, "other_opts", packing
+#
+#   time_avg = .true. or .false.
+#
+#   packing  = 1  double precision
+#            = 2  float
+#            = 4  packed 16-bit integers
+#            = 8  packed 1-byte (not tested?)

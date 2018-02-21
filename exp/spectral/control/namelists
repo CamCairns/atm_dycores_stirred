@@ -1,0 +1,81 @@
+
+# Note: damping_order = 4 specifies del 8'th diffusion ie. nabla^(2n) where n = damping_order
+
+ &spectral_dynamics_nml
+    damping_option          = 'resolution_dependent',
+    damping_order           = 4,
+    damping_coeff           = 1.15741e-4,
+    do_mass_correction      =.true.,
+    do_energy_correction    =.true.,
+    do_water_correction     =.false.,
+    use_virtual_temperature =.false.,
+    vert_advect_uv          = 'second_centered',
+    vert_advect_t           = 'second_centered',
+    longitude_origin        = 0.,
+    robert_coeff            = 0.04,
+    vert_diffusion_coeff    = 5.0,
+    alpha_implicit          = .5,
+    reference_sea_level_press=1.e5,
+    lon_max                 = 128,
+    lat_max                 = 64,
+    num_levels              = 30,
+    num_fourier             = 42,
+    num_spherical           = 43,
+    fourier_inc             = 1,
+    triang_trunc            =.true.,
+    topography_option       = 'flat',
+    vert_coord_option       = 'hybrid',
+    p_press				    = 0.8,	! sigma level above which coordinates are pure isobaric coordinates
+    p_sigma				    = 0.95,     ! sigma level below which coordinates are pure sigma coordinates
+    rotation_rate           = 7.292e-5, ! this namelist option allows the rotation rate to be changed through .nml rather then in the constants.f90 file. NOTE: namelists file requires numbers (not mathematical operations, can't write X*7.292e-5)
+    do_no_nl_eddy_eddy	    = .false.,   ! if true removes the effect of nonlinear eddy-eddy interactions
+    do_no_mean_eddy_eddy    = .false.,   ! if true removes all eddy-eddy interactions (incuding mean components)
+    do_no_eddy_mean         = .false.,   ! if true removes eddy-mean interactions
+    zonal_mean_eddy_forcing = .false.,   ! do a ZM on loaded eddy forcings
+    engage_eddy_forcing     = .false.,   ! read .nc files and load forcings
+    do_s_vert_diff          = .false.    ! if true removes vertical diffusion of dry static energy
+    scale_eddy_force	    = 1.0 /     ! what fraction of the eddy forcing to remove (negative values correspond to an amplification of the eddy forcing
+
+# Empty namelist causes all values to take on default values.
+# The default values for hs_forcing_nml are as described in:
+# Held, I. M., and M. J. Suarez, 1994: A proposal for the intercomparison
+# of the dynamical cores of atmospheric general circulation models.
+# Bulletin of the American Meteorological Society, 75(10), 1825-1830.
+#mag=0.000058,
+
+
+# Namelist options to apply a torque in the atmosphere (done in the subroutine Rayleigh friction is performed). Used in Kidston (2013).
+ &hs_forcing_nml 
+t_zero=315., 
+t_strat=200.,
+delh=60.,
+delv=10.,
+eps=0., 
+sigma_b=0.7 
+mag=0.,
+latcentre=50.,
+horwidth=30.,
+height=0.0,
+verwidth=0.05 /
+
+
+
+ &vert_coordinate_nml 
+   bk= 0.000000, 0.0117665, 0.0196679, 0.0315244, 0.0485411, 0.0719344, 			! bk = Ak, pk = Bk in "spectral dynamical core" pdf. This coordinate system inputs only needed if vert_coord_option = 'input'
+      0.1027829, 0.1418581, 0.1894648, 0.2453219, 0.3085103, 0.3775033, 0.4502789, 
+      0.5244989, 0.5977253, 0.6676441, 0.7322627, 0.7900587, 0.8400683, 0.8819111, 
+      0.9157609, 0.9422770, 0.9625127, 0.9778177, 0.9897489, 1.0000000, 
+   pk= 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 
+       0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000,
+       0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 
+       0.000000, 0.000000, 0.000000, 0.000000, 0.000000 / 
+
+# domains_stack_size will vary for different model resolutions,
+# domain decompositions, and number of processors used.
+
+&fms_nml
+    domains_stack_size = 600000 /
+
+ &fms_io_nml
+    threading_write = 'single',
+    fileset_write = 'single' /

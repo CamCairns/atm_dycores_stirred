@@ -1,0 +1,71 @@
+ &main_nml
+     days = 10,
+     dt_atmos = 1800 /
+
+ &atmosphere_nml
+   print_interval = 86400, /
+
+ &barotropic_dynamics_nml 
+  triang_trunc   = .true.,
+  num_lat        = 64,
+  num_lon        = 128,
+  num_fourier    = 42,
+  num_spherical  = 43,
+  fourier_inc    = 1,
+  damping_option = 'resolution_dependent',
+  damping_order  = 4,
+  damping_coeff  = 1.e-04, 
+  grid_tracer    = .true.,
+  spec_tracer    = .true.,
+  m_0            = 3,  		! Initialise a wave at that number (only in IVP mode)
+  read_file    	 = 0,  		! Look at barotropic_dynamics.f90 - Joe has added 4 different to read initial values of u & v. The reason for this was either reading values generated and stored in 					! different ways. Set read_file = 0 for a stationary start.
+  damp           = 2,		! if >=2, does linear damping on momentum (with timescales tau for eddies, tau1 for mean, see Kidston & Vallis 2013 for equation in context) and then spectral damping.
+                                ! if =1, does only spectral damping. If <1,  does no damping.
+  spec_deriv     = 1, 		! if ==0, does advection calculation in the original model way, for any other value, does advection calculation in the product rule expanded way
+  mult           = 1.0, 	! factor to multiply initial values of u&v by, in case you want to make them really small, and see whether EKE grows in time (instability)
+  linmult        = 1.0,		! factor to multiply vorticity flux by, for quasilinear runs (set to 1 for finite amplitude)
+  tau            = 518400.0,    ! eddy linear damping time scale
+  tau1           = 518400.0, 	! mean flow linear damping time scale
+  !spec_calc	 = 0,           ! 1 = Calculate spectral eddy triple eddy product (bumps calc time to 90sec/day), 0 = don't calculate
+  zeta_0         = 0.0, !8.0e-5,      ! the rest of these are left over from the IVP problem
+  eddy_lat       = 45.0,
+  eddy_width     = 15.0,
+  robert_coeff   = 0.04, /
+
+ &barotropic_physics_nml /
+
+ &stirring_nml
+  decay_time=172800,
+  amplitude= 7.e-11,
+  lat0=40.,  
+  lon0=180.,
+  widthy=10.,
+  widthx=45.,
+  B=0.0, 
+  lowk=4,
+  highk=14, 
+  lowtot=10,
+  hightot=14, /
+
+# For linear integration, had linmult = 10000000, amplitude = 7.e-15, compared to 7.e-11 for finite amplitude
+# for initial value prop, setting damp=0;read_file=1;mult=1;
+# for instability analysis:  set read_file = 2 to read a restart, 1 to read u.txt (just set mult to zero for stationary)
+# set damp to zero, 
+# decay_time to something small, 
+# widthy to something large, 
+# amplitude small
+# lowk is min zonal wavenumber (high for steady state
+# for steady state, play with tau (eddy damping) and tau1 (zonal mean damping).
+# set time in runscript, $in, $inst
+
+
+
+# NOTE: domains_stack_size will vary for different model resolutions,
+#       domain decompositions, and number of processors used.
+#       The actual value used is printed when the model terminates.
+ &fms_nml
+     domains_stack_size = 600000  /
+
+ &fms_io_nml
+    threading_write = 'single',
+    fileset_write = 'single' /

@@ -1,0 +1,14 @@
+!-------------------------------------------------------------------------
+subroutine compute_vor_div_3d(u_cos, v_cos, vorticity, divergence)
+!-------------------------------------------------------------------------
+
+complex, intent(in), dimension (:,:,:) :: u_cos
+complex, intent(in), dimension (:,:,:) :: v_cos
+complex, intent(out), dimension (:,:,:) :: vorticity
+complex, intent(out), dimension (:,:,:) :: divergence
+
+vorticity  = compute_alpha_operator(v_cos, u_cos, -1)
+divergence = compute_alpha_operator(u_cos, v_cos, +1)
+
+return
+end subroutine compute_vor_div_3d

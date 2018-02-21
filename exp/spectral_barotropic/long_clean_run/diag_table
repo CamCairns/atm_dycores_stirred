@@ -1,0 +1,184 @@
+"Diagnostics from spectral barotropic model"
+0 0 0 0 0 0
+
+"barotropic", 0, "seconds",  1, "seconds", "time",
+"barotropicA", 0, "seconds",  1, "seconds", "time",
+"barotropicB", 0, "seconds",  1, "seconds", "time",
+
+"barotropic_diagnostics",  "ucomp" ,  "ucomp" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "vcomp" ,  "vcomp" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "utend" ,  "utend" ,  "barotropic",  "all", .true.,  "none", 2,
+"barotropic_diagnostics",  "vtend" ,  "vtend" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "uprev" ,  "uprev" ,  "barotropic",  "all", .true.,  "none", 2,
+"barotropic_diagnostics",  "ucurr" ,  "ucurr" ,  "barotropic",  "all", .true.,  "none", 2,
+"barotropic_diagnostics",  "vprev" ,  "vprev" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "vcurr" ,  "vcurr" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "vorprev" ,  "vorprev" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "vorcurr" ,  "vorcurr" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "vortend" ,  "vortend" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "dt_vor" ,  "dt_vor" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "utrunc",  "utrunc",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "vtrunc",  "vtrunc",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "vortrunc",  "vortrunc",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "ulindamp_m",  "ulindamp_m",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "ulindamp_e",  "ulindamp_e",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "vlindamp",  "vlindamp",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "vorlindamp_m",  "vorlindamp_m",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "vorlindamp_e",  "vorlindamp_e",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "dx_u2_v2",  "dx_u2_v2",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "dy_u2_v2",  "dy_u2_v2",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "ustir",  "ustir",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "vstir",  "vstir",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "vorstir",  "vorstir",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "uspecdamp",  "uspecdamp",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "vspecdamp",  "vspecdamp",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "vorspecdamp",  "vorspecdamp",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "urobdamp",    "urobdamp",    "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "vrobdamp",    "vrobdamp",    "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "vorrobdamp",  "vorrobdamp",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "vor"   ,  "vor"   ,  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "pv"    ,  "pv"    ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "vq"    ,  "vq"    ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "uq"    ,  "uq"    ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "pvor_advec",  "pvor_advec",  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "rvor_advec",  "rvor_advec",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "rvormean_advec",  "rvormean_advec",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "rvorprime_advec",  "rvorprime_advec",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "beta",  "beta",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "beta_star",  "beta_star",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "v_dvordy",  "v_dvordy",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "u_dvordx",  "u_dvordx",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "vormean_x",  "vormean_x",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "vormean_y",  "vormean_y",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "vorprime_x",  "vorprime_x",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "vorprime_y",  "vorprime_y",  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "vormean_y_tend",  "vormean_y_tend",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "vorprime",  "vorprime",  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "vormeantend",  "vormeantend",  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "vorprimetend",  "vorprimetend",  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "vorprime_prev",  "vorprime_prev",  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "vorprime_curr",  "vorprime_curr",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "tester",  "tester",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "tester2",  "tester2",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "tester3",  "tester3",  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "tester4",  "tester4",  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "tester5",  "tester5",  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "tester6",  "tester6",  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "stream",  "stream",  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "v_y",  "v_y",  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "rvor_adveck",  "rvor_adveck",  "barotropic",  "all", .false.,  "none", 2,
+# ENERGY TERMS
+"barotropic_diagnostics",  "energy" ,  "energy" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "energy_tend" ,  "energy_tend" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "energy_voradvec" ,  "energy_voradvec" ,  "barotropic",  "all", .true.,  "none", 2,
+"barotropic_diagnostics",  "energy_gradterm" ,  "energy_gradterm" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "energy_trunc" ,  "energy_trunc" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "energy_lindamp_m" ,  "energy_lindamp_m" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "energy_lindamp_e" ,  "energy_lindamp_e" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "energy_specdamp" ,  "energy_specdamp" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "energy_stir" ,  "energy_stir" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "energy_robdamp" ,  "energy_robdamp" ,  "barotropic",  "all", .false.,  "none", 2,
+# MEAN ENERGY TERMS
+"barotropic_diagnostics",  "energy_mean" ,  "energy_mean" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "energy_tend_mean" ,  "energy_tend_mean" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "energy_voradvec_mean" ,  "energy_voradvec_mean" ,  "barotropic",  "all", .true.,  "none", 2,
+"barotropic_diagnostics",  "energy_gradterm_mean" ,  "energy_gradterm_mean" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "energy_trunc_mean" ,  "energy_trunc_mean" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "energy_lindamp_m_mean" ,  "energy_lindamp_m_mean" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "energy_lindamp_e_mean" ,  "energy_lindamp_e_mean" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "energy_specdamp_mean" ,  "energy_specdamp_mean" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "energy_stir_mean" ,  "energy_stir_mean" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "energy_robdamp_mean" ,  "energy_robdamp_mean" ,  "barotropic",  "all", .false.,  "none", 2,
+# ENSTROPHY TERMS
+"barotropic_diagnostics",  "enstrophy" ,  "enstrophy" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "enstrophy_tend" ,  "enstrophy_tend" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "enstrophy_dt_vor" ,  "enstrophy_dt_vor" ,  "barotropic",  "all", .true.,  "none", 2,
+"barotropic_diagnostics",  "enstrophy_pvor_advec" ,  "enstrophy_pvor_advec" ,  "barotropic",  "all", .true.,  "none", 2,
+"barotropic_diagnostics",  "enstrophy_rvormean_advec" ,  "enstrophy_rvormean_advec" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "enstrophy_rvorprime_advec" ,  "enstrophy_rvorprime_advec" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "enstrophy_trunc" ,  "enstrophy_trunc" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "enstrophy_lindamp_m" ,  "enstrophy_lindamp_m" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "enstrophy_lindamp_e" ,  "enstrophy_lindamp_e" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "enstrophy_specdamp" ,  "enstrophy_specdamp" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "enstrophy_stir" ,  "enstrophy_stir" ,  "barotropic",  "all", .false.,  "none", 2,
+"barotropic_diagnostics",  "enstrophy_robdamp" ,  "enstrophy_robdamp" ,  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "enstrophy_rvormean_adevc_Matlab" ,  "enstrophy_rvormean_adevc_Matlab" ,  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "enstrophy_rvorprime_adevc_Matlab" ,  "enstrophy_rvorprime_adevc_Matlab" ,  "barotropic",  "all", .false.,  "none", 2,
+# ENSTROPHY SPECTRAL TERMS
+#"barotropic_diagnostics",  "enstrophy_tendk",  "enstrophy_tendk",  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "enstrophy_pvor_adveck",  "enstrophy_pvor_adveck",  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "enstrophy_rvormean_adveck",  "enstrophy_rvormean_adveck",  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "enstrophy_trunck",  "enstrophy_trunck",  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "enstrophy_lindamp_ek",  "enstrophy_lindamp_ek",  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "enstrophy_lindamp_mk",  "enstrophy_lindamp_mk",  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "enstrophy_specdampk",  "enstrophy_specdampk",  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "enstrophy_robdampk",  "enstrophy_robdampk",  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "enstrophy_stirk",  "enstrophy_stirk",  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "vorprime_yk",  "vorprime_yk",  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "v_yk",  "v_yk",  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "vk",  "vk",  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "vorprimek_curr",  "vorprimek_curr",  "barotropic",  "all", .false.,  "none", 2,
+# JOE TERMS
+#"barotropic_diagnostics",  "sink" ,  "sink" ,  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "sink_beta" ,  "sink_beta" ,  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "robertssink" ,  "robertssink" ,  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "source" ,  "source" ,  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "source_beta" ,  "source_beta" ,  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "ensflux" ,  "ensflux" ,  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "ensflux_div" ,  "ensflux_div" ,  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "ensflux_div_beta" ,  "ensflux_div_beta" ,  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "dens_dt" ,  "dens_dt" ,  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "vvor_beta" ,  "vvor_beta" ,  "barotropic",  "all", .false.,  "none", 2,
+#
+#"barotropic_diagnostics",  "trs"   ,  "trs"  ,  "barotropic",  "all", .false.,  "none", 2,
+#"barotropic_diagnostics",  "tr"    ,  "tr"   ,  "barotropic",  "all", .false.,  "none", 2,
+
+
+"stirring",   1, "days",  1, "days", "time",
+"stirring_mod",   "stirring",     "stirring",     "stirring",   "all", .false., "none", 2,
+"stirring_mod",   "stirring_amp", "stirring_amp", "stirring",   "all", .false., "none", 2,
+"stirring_mod",   "stirring_sqr", "stirring_sqr", "stirring",   "all", .false., "none", 2,
+#"barotropic_dynamics_mod",   "damped",     "damped",     "stirring",   "all", .false., "none", 2,
+=============================================================================================
+
+  FORMATS FOR FILE ENTRIES (not all input values are used)
+  ------------------------
+
+"file_name", output_freq, "output_units", format, "time_units", "long_name",
+
+
+output_freq:  > 0  output frequency in "output_units"
+              = 0  output frequency every time step
+              =-1  output frequency at end of run
+
+output_units = units used for output frequency
+               (years, months, days, minutes, hours, seconds)
+
+time_units   = units used to label the time axis
+               (days, minutes, hours, seconds)
+
+
+  FORMAT FOR FIELD ENTRIES (not all input values are used)
+  ------------------------
+
+"module_name", "field_name", "output_name", "file_name" "time_sampling", time_avg, "other_opts", packing
+
+time_avg = .true. or .false.
+
+packing  = 1  double precision
+         = 2  float
+         = 4  packed 16-bit integers
+         = 8  packed 1-byte (not tested?)
+
+# TIME AVERAGING
+# The first namelist option, stored in main_nml, accessed through fms_runscript sets the length of a model run. This should be a multiple of the model time step, dt_atmos (the second namelist option in main_nml). The loop in runjob sets how many runs the model will do (each run after the first is intialised with the final conditions of the last time step of the 
+# previous run). 
+# A time average can be implemented using nco4.0.5 in fms_runscript. We make the model output every time step by setting output_freq = 0 above. This will generate a barotropic.nc file that contains X time values (where X = {length of model run}/{model time step}
+# We then use ncwa (weighted averaging) nco tool in the fms_runscript to average across the times in this .nc file and generate a new file barotropic_av.nc. Finally we rm the old barotropic.nc file (to 
+# save space).
+# Note that setting some output_freq, say of the form:
+#
+# 		"barotropic", 1, "days",  1, "days", "time",
+#
+# Will output the time step value at the end of that many time steps (e.g if dt_atmos = 30 mins, the above option will save variable values every 48th timestep) ... NOT A TIME AVERAGE!
+# I do not know how to use time_avg option (setting to .true.) (I assume it should do a similar thing). It doesn't seem to work for me.

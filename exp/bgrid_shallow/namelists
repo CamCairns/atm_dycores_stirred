@@ -1,0 +1,70 @@
+#
+# namelists used for bgrid core (N45)
+#
+
+# only used if initial conditions file not specified in run
+# used for cold start of bgrid core (N45L20)
+ &bgrid_cold_start_nml
+     nlon = 144, nlat = 90, nlev = 1,
+     pref = 3.e4 /
+
+ &bgrid_core_driver_nml
+     layout = 0,0,
+     filter_option = 2,
+     num_adjust_dt = 3,
+     num_advec_dt  = 3,
+     pgf_scheme = 'default',
+     restart_output_format = 'netcdf',
+     do_conserve_energy = .false. /
+
+# Important Note:
+#    The time steps used in the dynamical core are controlled by:
+#      a) atmospheric time step in the main program namelist (dt_atmos)
+#      b) advection time step  = dt_atmos / num_advec_dt
+#      c) adjustment time step = dt_atmos / (num_advec_dt * num_adjust_dt)
+
+ &bgrid_horiz_diff_nml
+     damp_coeff_wind   = 0.350,
+     damp_coeff_temp   = 0.350,
+     damp_coeff_tracer = 0.350,
+     slope_corr_temp   = 0.00, 0.00, 0.00, 0.00,
+     slope_corr_tracer = 0.00, 0.00, 0.00, 0.00,
+     damp_scheme_wind  = 2,
+     damp_scheme_temp  = 4,
+     reflat = 80. /
+
+ &bgrid_advection_nml
+     horiz_advec_scheme_wind   = 'fourth_centered',
+      vert_advec_scheme_wind   = 'none',
+     horiz_advec_scheme_temp   = 'second_centered',
+      vert_advec_scheme_temp   = 'none',
+     horiz_advec_scheme_tracer = 'second_centered',
+      vert_advec_scheme_tracer = 'none',
+     num_fill_pass = 1  /
+
+ &bgrid_sponge_nml
+     num_sponge_levels = 0,
+     sponge_coeff_wind = 0.00  /
+
+ &bgrid_integrals_nml
+     file_name  = 'dynam_integral.out',
+     time_units = 'days',
+     output_interval = 1.00   /
+
+# NOTE: domains_stack_size will vary for different model resolutions,
+#       domain decompositions, and number of processors used.
+#       The actual value used is printed when the model terminates.
+ &fms_nml
+     domains_stack_size = 50000  /
+
+ &fms_io_nml
+    threading_write = 'single',
+    fileset_write = 'single' /
+
+ &shallow_physics_nml
+    fric_damp_time  = -50.0,
+    therm_damp_time = -10.0,
+    h_0       = 3.e4,
+    h_monsoon = 1.e5,
+    h_itcz    = 4.e4 /
+

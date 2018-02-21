@@ -1,0 +1,53 @@
+#!/bin/csh -f
+#Minimal runscript for atmospheric dynamical cores
+set echo 
+#--------------------------------------------------------------------------------------------------------
+# define variables
+set platform  = ia64                                   # A unique identifier for your platform
+set npes      = 8                                        # number of processors
+#set in          = $1
+set in  = 0
+set out = 1
+set modeldir = /home/cwc210/FMS_models/atm_dycores_stirred_original_code_Zen # base path to model directory
+set template  = $modeldir/bin/mkmf.template.$platform       # path to template for your platform
+set mkmf      = $modeldir/bin/mkmf                      # path to executable mkmf
+set sourcedir = $modeldir/src                           # path to directory containing model source code
+set mppnccombine = $modeldir/bin/mppnccombine.$platform # path to executable mppnccombine
+#--------------------------------------------------------------------------------------------------------
+set exp_name  = control
+set execdir   = $modeldir/exp/spectral/$exp_name/exec.$platform       # where code is compiled and executable is created
+set workdir   = /data/cwc210/working/barotropic_stirred/spectral/$exp_name
+set arc       = /data/cwc210/archive/barotropic_stirred/spectral/$exp_name
+ 
+set pathnames = $modeldir/exp/spectral/$exp_name/path_names           # path to file containing list of source paths
+set namelist  = $modeldir/exp/spectral/$exp_name/namelists            # path to namelist file
+set diagtable = $modeldir/exp/spectral/$exp_name/diag_table           # path to diagnositics table
+set fieldtable = $modeldir/exp/spectral/$exp_name/field_table         # path to field table (specifies tracers)
+#--------------------------------------------------------------------------------------------------------
+# compile mppnccombine.c, will be used only if $npes > 1
+if ( ! -f $mppnccombine ) then
+  #gcc -O -o $mppnccombine -I/usr/local/include -L/usr/local/lib $cwd/../../../postprocessing/mppnccombine.c -lnetcdf
+  #icc -O -o $mppnccombine -I/share/apps/netcdf/intel/4.1.1/include -L/share/apps/netcdf/intel/4.1.1/lib $cwd/../../../postprocessing/mppnccombine.c -lnetcdf
+  gcc -O -o $mppnccombine -I/sw/netcdf-4.3.0/include -L/sw/netcdf-4.3.0/lib $modeldir/postprocessing/mppnccombine.c -lnetcdf
+endif
+#--------------------------------------------------------------------------------------------------------
+
+# setup directory structure
+if ( ! -d $execdir ) then 
+mkdir $execdir
+endif
+
+rm -rf $workdir
+mkdir -p $workdir $workdir/INPUT $workdir/RESTART
+
+if ( ! -d $arc ) then 
+mkdir -p $arc
+endif
+
+#--------------------------------------------------------------------------------------------------------
+# compile the model code and create executable
+cd $execdir
+$mkmf -p fms.x -t $template -c "-Duse_libMPI -Duse_netCDF" -a $sourcedir $pathnames /usr/local/include $sourcedir/shared/mpp/include $sourcedir/shared/include
+make -f Makefile
+cd $workdir
+#--------------------------------------------------------------------------------------------------------

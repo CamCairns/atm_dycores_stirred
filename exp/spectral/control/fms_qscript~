@@ -1,0 +1,92 @@
+#!/bin/csh -f
+
+#Minimal runscript for atmospheric dynamical cores
+set echo 
+#--------------------------------------------------------------------------------------------------------
+# define variables
+set platform  = ia64                                   # A unique identifier for your platform
+set npes      = 8                                        # number of processors
+set in          = $1
+set modeldir = /home/cwc210/FMS_models/atm_dycores_stirred # base path to model directory
+set template  = $modeldir/mkmf.template.$platform       # path to template for your platform
+set mkmf      = $modeldir/bin/mkmf                      # path to executable mkmf
+set sourcedir = $modeldir/src                           # path to directory containing model source code
+set mppnccombine = $modeldir/bin/mppnccombine.$platform # path to executable mppnccombine
+#--------------------------------------------------------------------------------------------------------
+set exp_name   = control
+set execdir   = $modeldir/exp/spectral/$exp_name/exec.$platform       # where code is compiled and executable is created
+set workdir   = /data/cwc210/working/barotropic_stirred/spectral/$exp_name
+set arc       = /data/cwc210/archive/barotropic_stirred/spectral/$exp_name
+ 
+set pathnames = $modeldir/exp/spectral/$exp_name/path_names           # path to file containing list of source paths
+set namelist  = $modeldir/exp/spectral/$exp_name/namelists            # path to namelist file
+set diagtable = $modeldir/exp/spectral/$exp_name/diag_table           # path to diagnositics table
+set fieldtable = $modeldir/exp/spectral/$exp_name/field_table         # path to field table (specifies tracers)
+#--------------------------------------------------------------------------------------------------------
+
+set out = $in
+@ out ++
+
+rm -rf $workdir
+mkdir -p $workdir $workdir/INPUT $workdir/RESTART
+
+cd $workdir
+
+# set run length and time step, get input data and executable
+cat > input.nml <<EOF
+ &main_nml
+         days   = 30,
+         dt_atmos = 1800 /
+EOF
+cat $namelist >> input.nml
+cp $diagtable diag_table
+cp $fieldtable field_table
+cp $execdir/fms.x fms.x
+
+cd $workdir
+           
+if ($in > 0) then
+     cd INPUT
+     cp $arc/restarts/res_$in.cpio res
+     cpio -iv < res
+ endif
+                       
+cd $workdir
+#--------------------------------------------------------------------------------------------------------
+# run the model with mpirun
+mpirun -np $npes fms.x
+#--------------------------------------------------------------------------------------------------------
+# combine netcdf files
+
+if ( $npes > 1 ) then
+  foreach ncfile (`/bin/ls *.nc.0000`)
+    $mppnccombine $ncfile:r
+    if ($status == 0) rm -f $ncfile:r.????
+  end
+endif
+
+if ( ! -d $arc/run$out ) then
+mkdir $arc/run$out
+endif
+cp ./*.nc ./*table *.nml $arc/run$out/
+
+ncwa -a lon $arc/run$out/atmos_average.nc $arc/run$out/monthly_lonav.nc
+rm $arc/run$out/atmos_average.nc
+#ncwa -a lon $arc/run$out/atmos_daily.nc $arc/run$out/daily_lonav.nc
+#rm $arc/run$out/atmos_daily.nc  
+ncwa -a lon_every $arc/run$out/atmos_dailya.nc $arc/run$out/dailya_lonav.nc  
+rm $arc/run$out/atmos_dailya.nc
+#ncwa -a lon $arc/run$out/atmos_dailyb.nc $arc/run$out/dailyb_lonav.nc
+
+if ( ! -d $arc/restarts ) then
+mkdir $arc/restarts
+endif
+
+cd RESTART
+/bin/ls *.res *.res.nc | cpio -ov > res_$out.cpio
+cp res_$out.cpio $arc/restarts/
+
+
+
+
+

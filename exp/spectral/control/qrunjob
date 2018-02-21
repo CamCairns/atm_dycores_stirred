@@ -1,0 +1,29 @@
+#!/bin/bash
+
+#PBS -l nodes=1:ppn=12
+#PBS -o stdout.out
+#PBS -e stderr.err
+
+#PBS -l walltime=24:00:00
+# Send email when the job begins, aborts or ends
+#PBS -m bae
+# Address to send mail to
+#PBS -M cwc210@exeter.ac.uk
+
+# Load modules
+#source /home/z3309205/scripts/loadmodule
+#ulimit -s unlimited
+#
+#rm -rf ./nohup.out 
+
+for ((i=174; i < 325; i++))
+do 
+
+/home/cwc210/FMS_models/atm_dycores_stirred_original_code_Zen/exp/spectral/control/fms_qscript $i
+
+done
+
+#cd /srv/ccrc/data01/z3309205/atm_dycores/spectral/control_10_day
+#ncea run*/dailya_av.nc ./dailya_av.nc
+#
+#ncea run*/daily_av.nc ./daily_av.nc
